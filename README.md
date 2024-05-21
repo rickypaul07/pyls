@@ -1,3 +1,11 @@
+
+## Clone project
+
+```bash
+git clone https://github.com/rickypaul07/pyls.git
+```
+## To Execute :
+
 To list the top-level directories and files:
 ```bash
 python pyls.py
@@ -34,4 +42,24 @@ python pyls.py -l -H
 To display help:
 ```bash
 python pyls.py --help
+```
+
+# To run project as package
+
+## pyls
+
+A Python implementation of the `ls` command.
+
+## Installation
+
+To install the package, run:
+
+```bash
+pip install .
+```
+
+## For testing
+
+```bash
+pytest
 ```
