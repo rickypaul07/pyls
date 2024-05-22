@@ -16,6 +16,8 @@ A Python implementation of the `ls` command.
 To install the package, run:
 
 ```bash
+pip install pytest
+
 pip install .
 ```
 
