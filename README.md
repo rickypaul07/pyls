@@ -4,47 +4,8 @@
 ```bash
 git clone https://github.com/rickypaul07/pyls.git
 ```
-## To Execute :
 
-To list the top-level directories and files:
-```bash
-python pyls.py
-```
-
-To include hidden files:
-```bash
-python pyls.py -A
-```
-To use the long listing format:
-```bash
-python pyls.py -l
-```
-To reverse the order of the listing:
-```bash
-python pyls.py -l -r
-```
-To sort by time modified:
-```bash
-python pyls.py -l -r -t
-```
-To filter by files or directories:
-```bash
-python pyls.py -l -r -t --filter=file
-```
-To navigate to a subdirectory:
-```bash
-python pyls.py parser
-```
-To show human-readable sizes:
-```bash
-python pyls.py -l -H
-```
-To display help:
-```bash
-python pyls.py --help
-```
-
-# To run project as package
+# To run project
 
 ## pyls
 
@@ -56,6 +17,48 @@ To install the package, run:
 
 ```bash
 pip install .
+```
+
+## To execute
+
+To list the top-level directories and files:
+```bash
+pyls
+```
+
+To include hidden files:
+```bash
+pyls -A
+```
+To use the long listing format:
+```bash
+pyls -l
+```
+To reverse the order of the listing:
+```bash
+pyls -l -r
+```
+To sort by time modified:
+```bash
+pyls -l -r -t
+```
+To filter by files or directories:
+```bash
+pyls -l -r -t --filter=file
+
+pyls -l -r -t --filter=dir
+```
+To navigate to a subdirectory:
+```bash
+pyls parser
+```
+To show human-readable sizes:
+```bash
+pyls -l -H
+```
+To display help:
+```bash
+pyls --help
 ```
 
 ## For testing

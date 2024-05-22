@@ -11,9 +11,6 @@ def read_json(file_path):
 
 def list_directory(contents, show_hidden=False, long_format=False, reverse=False, sort_by_time=False,
                    filter_option=None, human_readable=False):
-    if filter_option not in (None, 'file', 'dir'):
-        raise ValueError(f"Invalid filter option '{filter_option}'. Available filters are 'file' and 'dir'.")
-
     items = []
     for item in contents:
         if not show_hidden and item['name'].startswith('.'):
@@ -57,22 +54,27 @@ def main():
     parser.add_argument('-l', '--long', action='store_true', help="use a long listing format")
     parser.add_argument('-r', '--reverse', action='store_true', help="reverse order while sorting")
     parser.add_argument('-t', '--time', action='store_true', help="sort by time, newest first")
-    parser.add_argument('--filter', choices=['file', 'dir'], help="filter by 'file' or 'dir'")
+    parser.add_argument('--filter', help="filter by 'file' or 'dir'")
     parser.add_argument('-H', '--human-readable', action='store_true',
                         help="with -l, print sizes in human readable format")
-    parser.add_argument('path', nargs='?', default='structure.json', help="path to the JSON file")
+    parser.add_argument('path', nargs='?', default='structure.json',
+                        help="path to the JSON file or a directory within the JSON structure")
     args = parser.parse_args()
 
-    if not os.path.isfile(args.path):
-        print(f"error: cannot access '{args.path}': No such file or directory")
+    if args.filter not in (None, 'file', 'dir'):
+        print(f"error: '{args.filter}' is not a valid filter criteria. Available filters are 'file' and 'dir'.")
         return
 
-    structure = read_json(args.path)
+    if not os.path.isfile('structure.json'):
+        print(f"error: cannot access 'structure.json': No such file or directory")
+        return
 
-    if args.path == 'structure.json':
+    structure = read_json('structure.json')
+
+    if args.path == 'structure.json' or args.path == '.':
         contents = structure['contents']
     else:
-        contents = get_subdirectory_contents(structure, args.path.split('/'))
+        contents = get_subdirectory_contents(structure, args.path.strip('./').split('/'))
 
     if contents is None:
         print(f"error: cannot access '{args.path}': No such file or directory")
